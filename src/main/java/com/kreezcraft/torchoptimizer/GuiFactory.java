@@ -1,4 +1,4 @@
-package com.kreezcraft.llor;
+package com.kreezcraft.torchoptimizer;
 
 import java.util.Set;
 

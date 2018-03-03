@@ -1,4 +1,4 @@
-package com.kreezcraft.llor;
+package com.kreezcraft.torchoptimizer;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class ConfigManager {
 	
 	@SubscribeEvent
 	public void onConfigurationChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-		if (event.getModID().equals(Llor.MODID)) update();
+		if (event.getModID().equals(TorchOptimizer.MODID)) update();
 	}
 	
 	void reload() {

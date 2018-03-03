@@ -1,0 +1,63 @@
+[13:11:09] [main/INFO]: Setting user: Player396
+[13:11:14] [main/WARN]: Skipping bad option: lastServer:
+[13:11:14] [main/INFO]: LWJGL Version: 2.9.4
+[13:11:17] [main/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Torch Optimizer
+[13:11:21] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[13:11:21] [Thread-5/INFO]: Initializing LWJGL OpenAL
+[13:11:21] [Thread-5/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[13:11:22] [Thread-5/INFO]: OpenAL initialized.
+[13:11:22] [Sound Library Loader/INFO]: Sound engine started
+[13:11:27] [main/INFO]: Created: 512x512 textures-atlas
+[13:11:30] [main/WARN]: Skipping bad option: lastServer:
+[13:11:30] [main/INFO]: Narrator library for x64 successfully loaded
+[13:11:31] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
+[13:11:37] [Server thread/INFO]: Starting integrated minecraft server version 1.12.2
+[13:11:37] [Server thread/INFO]: Generating keypair
+[13:11:38] [Server thread/INFO]: Loaded 488 advancements
+[13:11:38] [Server thread/INFO]: Preparing start region for level 0
+[13:11:39] [Server thread/INFO]: Preparing spawn area: 29%
+[13:11:40] [Server thread/INFO]: Changing view distance to 12, from 10
+[13:11:42] [Server thread/INFO]: Player396[local:E:b0f89201] logged in with entity id 302 at (117.68968818853456, 70.0, -183.95147007000534)
+[13:11:42] [Server thread/INFO]: Player396 joined the game
+[13:11:44] [Server thread/INFO]: Saving and pausing game...
+[13:11:44] [Server thread/INFO]: Saving chunks for level 'New World'/overworld
+[13:11:44] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@25ca9a09[id=7ba45a5a-c3de-3909-ba3c-f9f78edf15b6,name=Player396,properties={},legacy=false]
+com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
+	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:79) ~[YggdrasilAuthenticationService.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:180) [YggdrasilMinecraftSessionService.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:60) [YggdrasilMinecraftSessionService$1.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:57) [YggdrasilMinecraftSessionService$1.class:?]
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3716) [guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2424) [guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2298) [guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2211) [guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache.get(LocalCache.java:4154) [guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache.getOrLoad(LocalCache.java:4158) [guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.get(LocalCache.java:5147) [guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.getUnchecked(LocalCache.java:5153) [guava-21.0.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillProfileProperties(YggdrasilMinecraftSessionService.java:170) [YggdrasilMinecraftSessionService.class:?]
+	at net.minecraft.client.Minecraft.getProfileProperties(Minecraft.java:3188) [Minecraft.class:?]
+	at net.minecraft.client.resources.SkinManager$3.run(SkinManager.java:138) [SkinManager$3.class:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) [?:1.8.0_162]
+	at java.util.concurrent.FutureTask.run(Unknown Source) [?:1.8.0_162]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) [?:1.8.0_162]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) [?:1.8.0_162]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_162]
+[13:11:44] [Server thread/INFO]: Saving chunks for level 'New World'/the_nether
+[13:11:44] [Server thread/INFO]: Saving chunks for level 'New World'/the_end
+[13:12:01] [Server thread/INFO]: Saving and pausing game...
+[13:12:01] [Server thread/INFO]: Saving chunks for level 'New World'/overworld
+[13:12:01] [Server thread/INFO]: Saving chunks for level 'New World'/the_nether
+[13:12:01] [Server thread/INFO]: Saving chunks for level 'New World'/the_end
+[13:12:02] [Server thread/INFO]: Stopping server
+[13:12:02] [Server thread/INFO]: Saving players
+[13:12:02] [Server thread/INFO]: Player396 lost connection: Disconnected
+[13:12:02] [Server thread/INFO]: Player396 left the game
+[13:12:02] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[13:12:02] [Server thread/INFO]: Saving worlds
+[13:12:02] [Server thread/INFO]: Saving chunks for level 'New World'/overworld
+[13:12:02] [Server thread/INFO]: Saving chunks for level 'New World'/the_nether
+[13:12:02] [Server thread/INFO]: Saving chunks for level 'New World'/the_end
+[13:12:04] [main/INFO]: Stopping!
+[13:12:04] [main/INFO]: SoundSystem shutting down...
+[13:12:04] [main/WARN]: Author: Paul Lamb, www.paulscode.com

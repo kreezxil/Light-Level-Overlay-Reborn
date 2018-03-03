@@ -1,4 +1,4 @@
-package com.kreezcraft.llor;
+package com.kreezcraft.torchoptimizer;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -17,15 +17,15 @@ import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 
 import org.lwjgl.input.Keyboard;
 
-@Mod(modid = Llor.MODID, name = Llor.NAME, version = Llor.VERSION, useMetadata = true, clientSideOnly = true, guiFactory = "com.kreezcraft.llor.GuiFactory")
-public class Llor {
+@Mod(modid = TorchOptimizer.MODID, name = TorchOptimizer.NAME, version = TorchOptimizer.VERSION, useMetadata = true, clientSideOnly = true, guiFactory = "com.kreezcraft.llor.GuiFactory")
+public class TorchOptimizer {
 
-	public static final String MODID = "llor";
-	public static final String NAME = "Light Level Overlay Reborn";
+	public static final String MODID = "torchoptimizer";
+	public static final String NAME = "Torch Optimizer";
 	public static final String VERSION = "@VERSION@";
 
 	@Instance(MODID)
-	public static Llor instance;
+	public static TorchOptimizer instance;
 
 	public OverlayRenderer renderer;
 	public OverlayPoller poller;
@@ -47,7 +47,7 @@ public class Llor {
 		renderer = new OverlayRenderer();
 		poller = new OverlayPoller();
 		active = false;
-		hotkey = new KeyBinding("key.llor.hotkey", Keyboard.KEY_F4, "key.categories.llor");
+		hotkey = new KeyBinding("key.torchoptimizer.hotkey", Keyboard.KEY_F4, "key.categories.torchoptimizer");
 		ClientRegistry.registerKeyBinding(hotkey);
 		launchPoller();
 	}

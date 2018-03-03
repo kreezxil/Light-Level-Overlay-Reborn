@@ -1,4 +1,4 @@
-package com.kreezcraft.llor;
+package com.kreezcraft.torchoptimizer;
 
 import java.util.ArrayList;
 
@@ -18,7 +18,7 @@ public class OverlayRenderer {
 	private double[] texureMinY, texureMaxY;
 	
 	public OverlayRenderer() {
-		texture = new ResourceLocation("llor", "textures/overlay.png");
+		texture = new ResourceLocation("torchoptimizer", "textures/overlay.png");
 		texureMinX = new double[64];
 		texureMaxX = new double[64];
 		texureMinY = new double[64];

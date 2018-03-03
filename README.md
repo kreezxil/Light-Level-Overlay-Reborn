@@ -1,4 +1,4 @@
-# Light Level Overlay Reborn
+# Torch Optimizer
 
 A continuation of the [MIT LICENSED](https://minecraft.curseforge.com/projects/light-level-overlay-reloaded/license) [Light Level Overlay Reloaded](https://minecraft.curseforge.com/projects/light-level-overlay-reloaded) mod by oldjunyi.
 

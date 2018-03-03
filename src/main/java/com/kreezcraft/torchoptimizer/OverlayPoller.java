@@ -1,4 +1,4 @@
-package com.kreezcraft.llor;
+package com.kreezcraft.torchoptimizer;
 
 import java.util.ArrayList;
 
@@ -22,9 +22,9 @@ public class OverlayPoller extends Thread {
 		while (true) {
 			int chunkRadius = updateChunkRadius();
 			radius = radius % chunkRadius + 1;
-			if (Llor.instance.active) updateLightLevel(radius, chunkRadius);
+			if (TorchOptimizer.instance.active) updateLightLevel(radius, chunkRadius);
 			try {
-				sleep(Llor.instance.config.pollingInterval.getInt());
+				sleep(TorchOptimizer.instance.config.pollingInterval.getInt());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -33,7 +33,7 @@ public class OverlayPoller extends Thread {
 	
 	@SuppressWarnings("unchecked")
 	private int updateChunkRadius() {
-		int size = Llor.instance.config.chunkRadius.getInt();
+		int size = TorchOptimizer.instance.config.chunkRadius.getInt();
 		if (overlays == null || overlays.length != size * 2 + 1) {
 			overlays = new ArrayList[size * 2 + 1][size * 2 + 1];
 			for (int i = 0; i < overlays.length; i++)
@@ -53,8 +53,8 @@ public class OverlayPoller extends Thread {
 		int playerChunkX = mc.player.chunkCoordX;
 		int playerChunkZ = mc.player.chunkCoordZ; 
 		int skyLightSub = world.calculateSkylightSubtracted(1.0f);
-		int displayMode = Llor.instance.config.displayMode.getInt();
-		boolean useSkyLight = Llor.instance.config.useSkyLight.getBoolean();
+		int displayMode = TorchOptimizer.instance.config.displayMode.getInt();
+		boolean useSkyLight = TorchOptimizer.instance.config.useSkyLight.getBoolean();
 		
 		for (int chunkX = playerChunkX - radius; chunkX <= playerChunkX + radius; chunkX++)
 		for (int chunkZ = playerChunkZ - radius; chunkZ <= playerChunkZ + radius; chunkZ++) {
