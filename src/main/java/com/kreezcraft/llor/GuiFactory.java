@@ -1,4 +1,4 @@
-package com.mmyzd.llor;
+package com.kreezcraft.llor;
 
 import java.util.Set;
 
@@ -13,25 +13,29 @@ public class GuiFactory implements IModGuiFactory {
 	}
 
 	@Override
+	public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public Class<? extends GuiScreen> mainConfigGuiClass() {
 		return GuiModConfig.class;
 	}
-
-	@Override
-	public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
-		return null;
-	}
-
-	@Override
-	public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) {
-		return null;
-	}
-
+//
+//	@Override
+//	public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
+//		return null;
+//	}
+//
+//	public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) {
+//		return null;
+//	}
+//
 	@Override
 	public boolean hasConfigGui() {
 		return true;
 	}
-
+//
 	@Override
 	public GuiScreen createConfigGui(GuiScreen parentScreen) {
 		return new GuiModConfig(parentScreen);
