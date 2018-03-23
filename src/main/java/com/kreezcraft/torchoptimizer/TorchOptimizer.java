@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 
 import org.lwjgl.input.Keyboard;
 
-@Mod(modid = TorchOptimizer.MODID, name = TorchOptimizer.NAME, version = TorchOptimizer.VERSION, useMetadata = true, clientSideOnly = true, guiFactory = "com.kreezcraft.llor.GuiFactory")
+@Mod(modid = TorchOptimizer.MODID, name = TorchOptimizer.NAME, version = TorchOptimizer.VERSION, useMetadata = true, clientSideOnly = true, guiFactory = "com.kreezcraft.torchoptimizer.GuiFactory")
 public class TorchOptimizer {
 
 	public static final String MODID = "torchoptimizer";

@@ -20,7 +20,7 @@ public class ConfigManager {
 	public ArrayList<String> displayModeDesc = new ArrayList<String>();
 	
 	public ConfigManager(File configDir) {
-		file = new Configuration(new File(configDir, "LLOverlayReloaded.cfg"));
+		file = new Configuration(new File(configDir, "TorchOptimizer.cfg"));
 		displayModeName.add("Standard");
 		displayModeName.add("Advanced");
 		displayModeName.add("Minimal");
