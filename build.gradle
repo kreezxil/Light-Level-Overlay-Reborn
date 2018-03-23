@@ -32,7 +32,7 @@ minecraft {
     mappings = "snapshot_20171003"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 	replace "@VERSION@",project.version
-	replaceIn "Llor.java"
+	replaceIn "TorchOptimizer.java"
 }
 
 dependencies {
