@@ -3,6 +3,7 @@ package com.kreezcraft.torchoptimizer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -14,6 +15,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
+import scala.swing.TextComponent;
 
 import org.lwjgl.input.Keyboard;
 
@@ -32,6 +34,7 @@ public class TorchOptimizer {
 	public ConfigManager config;
 	public boolean active;
 	public KeyBinding hotkey;
+	public KeyBinding plusOne, minusOne;
 	public String message;
 	public double messageRemainingTicks;
 
@@ -47,8 +50,16 @@ public class TorchOptimizer {
 		renderer = new OverlayRenderer();
 		poller = new OverlayPoller();
 		active = false;
-		hotkey = new KeyBinding("key.torchoptimizer.hotkey", Keyboard.KEY_F4, "key.categories.torchoptimizer");
+
+		hotkey = new KeyBinding("key.torchoptimizer.hotkey", Keyboard.KEY_F7, "key.categories.torchoptimizer");
 		ClientRegistry.registerKeyBinding(hotkey);
+
+		plusOne = new KeyBinding("key.torchoptimizer.plusone", Keyboard.KEY_PERIOD, "key.categories.torchoptimizer");
+		ClientRegistry.registerKeyBinding(plusOne);
+
+		minusOne = new KeyBinding("key.torchoptimizer.minusone", Keyboard.KEY_COMMA, "key.categories.torchoptimizer");
+		ClientRegistry.registerKeyBinding(minusOne);
+
 		launchPoller();
 	}
 
@@ -70,22 +81,54 @@ public class TorchOptimizer {
 		boolean withShift = Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT);
 		boolean withCtrl = Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL);
 		boolean withAlt = Keyboard.isKeyDown(Keyboard.KEY_LMENU) || Keyboard.isKeyDown(Keyboard.KEY_RMENU);
+
 		if (hotkey.isPressed()) {
 			if (active && withShift && !withCtrl) {
 				boolean useSkyLight = !config.useSkyLight.getBoolean();
 				config.useSkyLight.set(useSkyLight);
-				message = "Light Level Overlay: " + (useSkyLight ? "Block Light + Sky Light" : "Block Light Only");
+				// message = "Light Level Overlay: " + (useSkyLight ? "Block Light + Sky Light"
+				// : "Block Light Only");
+				message = new TextComponentTranslation("message.torchoptimizer.llo").getFormattedText() + " "
+						+ (useSkyLight ? new TextComponentTranslation("message.torchoptimizer.blsl").getFormattedText()
+								: new TextComponentTranslation("message.torchoptimizer.blo").getFormattedText());
 				messageRemainingTicks = 40;
 			} else if (active && withCtrl && !withShift) {
 				int mode = (config.displayMode.getInt() + 1) % 3;
 				config.displayMode.set(mode);
-				message = "Light Level Overlay: " + config.displayModeName.get(mode) + " Mode";
+				message = new TextComponentTranslation("message.torchoptimizer.llo").getFormattedText() + " "
+						+ config.displayModeName.get(mode) + " "
+						+ new TextComponentTranslation("message.torchoptimizer.mode").getFormattedText();
 				messageRemainingTicks = 40;
 			} else if (!withShift && !withCtrl && !withAlt) {
 				active = !active;
 				launchPoller();
 			}
 		}
+
+		if (minusOne.isPressed()) {
+			if (active) {
+				//well that means you want it enabled
+				config.optimizeEnable.set(true);
+				config.optimizedPlacement.set(config.optimizedPlacement.getInt() - 1);
+				config.update();
+			} else {
+				active = !active;
+				launchPoller();
+			}
+		}
+
+		if (plusOne.isPressed()) {
+			if (active) {
+				//well that means you want it enabled
+				config.optimizeEnable.set(true);
+				config.optimizedPlacement.set(config.optimizedPlacement.getInt() + 1);
+				config.update();
+			} else {
+				active = !active;
+				launchPoller();
+			}
+		}
+
 	}
 
 	@SubscribeEvent

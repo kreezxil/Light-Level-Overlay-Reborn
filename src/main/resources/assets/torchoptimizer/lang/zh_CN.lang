@@ -1,0 +1,9 @@
+key.torchoptimizer.hotkey=切换开/关
+key.categories.torchoptimizer=火炬优化器
+key.torchoptimizer.plusone=将星号偏移量加1
+key.torchoptimizer.minusone=从星号偏移量中减去一个
+
+message.torchoptimizer.llo=轻量级叠加
+message.torchoptimizer.blsl=阻挡光线+天空之光
+message.torchoptimizer.blo=仅限光
+message.torchoptimizer.mode=模式

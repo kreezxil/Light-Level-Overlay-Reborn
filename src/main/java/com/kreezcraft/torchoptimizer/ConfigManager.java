@@ -16,6 +16,9 @@ public class ConfigManager {
 	public Property displayMode;
 	public Property chunkRadius;
 	public Property pollingInterval;
+	public Property optimizeEnable;
+	public Property optimizedPlacement;
+	
 	public ArrayList<String> displayModeName = new ArrayList<String>();
 	public ArrayList<String> displayModeDesc = new ArrayList<String>();
 	
@@ -47,6 +50,8 @@ public class ConfigManager {
 		displayMode = file.get("general", "displayMode", 0, comment);
 		chunkRadius = file.get("general", "chunkRadius", 3, "The distance (in chunks) of rendering radius. (default: 3)");
 		pollingInterval = file.get("general", "pollingInterval", 200, "The update interval (in milliseconds) of light level. Farther chunks update less frequently. (default: 200)");
+		optimizeEnable = file.get("general", "optimizeEnable", false, "If enabled, optimizedPlacement will be used to help you place your torches. (default: false)");
+		optimizedPlacement = file.get("general", "optimizedPlacement", 2, "Shows an asterisk on the ground to indicate where to put your torch. (default: 2)");
 		update();
 	}
 	
@@ -55,7 +60,11 @@ public class ConfigManager {
 		displayMode.set(Math.min(Math.max(displayMode.getInt(0), 0), displayModeName.size() - 1));
 		chunkRadius.set(Math.min(Math.max(chunkRadius.getInt(3), 1), 9));
 		pollingInterval.set(Math.min(Math.max(pollingInterval.getInt(200), 10), 60000));
+		optimizeEnable.set(optimizeEnable.getBoolean(false));
+		if(optimizedPlacement.getInt() < 0 || optimizedPlacement.getInt() > 15) optimizedPlacement.set(2);
+		optimizedPlacement.set(optimizedPlacement.getInt(2));
 		file.save();
+		if(TorchOptimizer.instance.renderer != null) TorchOptimizer.instance.renderer.switchTexture(optimizedPlacement.getInt());
 	}
 	
 }
