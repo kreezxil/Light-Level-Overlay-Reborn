@@ -20,11 +20,7 @@ build
 # other
 eclipse
 run
-
-gradle\.properties
-
-gradle/wrapper/
-
-gradlew
-
-gradlew\.bat
+/gradle/
+/gradle.properties
+/gradlew
+/gradlew.bat

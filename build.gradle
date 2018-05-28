@@ -4,7 +4,7 @@ buildscript {
         maven { url = "http://files.minecraftforge.net/maven" }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -21,10 +21,10 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12.2-14.23.3.2698"
+    version = "1.11.2-13.20.1.2588"
     runDir = "run"
     
-    mappings = "snapshot_20171003"
+    mappings = "snapshot_20161220"
 
 	replace "@VERSION@",project.version
 	replaceIn "TorchOptimizer.java"
