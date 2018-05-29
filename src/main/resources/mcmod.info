@@ -1,0 +1,16 @@
+[
+{
+  "modid": "torchoptimizer",
+  "name": "Torch Optimizer",
+  "description": "Allows you to visualize the intensity of light rendered as numbers on the top of blocks. Optionally display optimal placement of torches.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://minecraft.curseforge.com/projects/torch-optimizer",
+  "updateUrl": "https://minecraft.curseforge.com/projects/torch-optimizer/files/latest",
+  "authorList": ["kreezxil"],
+  "credits": "Thanks to 4poc for his original version. Thanks to Oldjunyi for continuing it for a time.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

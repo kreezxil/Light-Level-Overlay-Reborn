@@ -1,0 +1,9 @@
+key.torchoptimizer.hotkey=Включить / выключить
+key.categories.torchoptimizer=Оптимизатор факелов
+key.torchoptimizer.plusone=добавьте его к смещению звездочки
+key.torchoptimizer.minusone=вычесть один из смещения звездочки
+
+message.torchoptimizer.llo=Наложение уровня света
+message.torchoptimizer.blsl=Блок света + Небесный свет
+message.torchoptimizer.blo=Только блок света
+message.torchoptimizer.mode=Режим
