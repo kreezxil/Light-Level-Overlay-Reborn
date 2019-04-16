@@ -19,7 +19,7 @@ import scala.swing.TextComponent;
 
 import org.lwjgl.input.Keyboard;
 
-@Mod(modid = TorchOptimizer.MODID, name = TorchOptimizer.NAME, version = TorchOptimizer.VERSION, useMetadata = true, clientSideOnly = true, guiFactory = "com.kreezcraft.torchoptimizer.GuiFactory")
+@Mod(modid = TorchOptimizer.MODID, name = TorchOptimizer.NAME, version = TorchOptimizer.VERSION, useMetadata = true, clientSideOnly = true, guiFactory = "com.kreezcraft.torchoptimizer.GuiFactory", acceptedMinecraftVersions="[1.12.2]")
 public class TorchOptimizer {
 
 	public static final String MODID = "torchoptimizer";
@@ -54,10 +54,10 @@ public class TorchOptimizer {
 		hotkey = new KeyBinding("key.torchoptimizer.hotkey", Keyboard.KEY_F7, "key.categories.torchoptimizer");
 		ClientRegistry.registerKeyBinding(hotkey);
 
-		plusOne = new KeyBinding("key.torchoptimizer.plusone", Keyboard.KEY_PERIOD, "key.categories.torchoptimizer");
+		plusOne = new KeyBinding("key.torchoptimizer.plusone", Keyboard.KEY_LBRACKET, "key.categories.torchoptimizer");
 		ClientRegistry.registerKeyBinding(plusOne);
 
-		minusOne = new KeyBinding("key.torchoptimizer.minusone", Keyboard.KEY_COMMA, "key.categories.torchoptimizer");
+		minusOne = new KeyBinding("key.torchoptimizer.minusone", Keyboard.KEY_RBRACKET, "key.categories.torchoptimizer");
 		ClientRegistry.registerKeyBinding(minusOne);
 
 		launchPoller();
@@ -95,9 +95,7 @@ public class TorchOptimizer {
 			} else if (active && withCtrl && !withShift) {
 				int mode = (config.displayMode.getInt() + 1) % 3;
 				config.displayMode.set(mode);
-				message = new TextComponentTranslation("message.torchoptimizer.llo").getFormattedText() + " "
-						+ config.displayModeName.get(mode) + " "
-						+ new TextComponentTranslation("message.torchoptimizer.mode").getFormattedText();
+				message = new StringBuilder().append(new TextComponentTranslation("message.torchoptimizer.llo").getFormattedText()).append(" ").append(config.displayModeName.get(mode)).append(" ").append(new TextComponentTranslation("message.torchoptimizer.mode").getFormattedText()).toString();
 				messageRemainingTicks = 40;
 			} else if (!withShift && !withCtrl && !withAlt) {
 				active = !active;
