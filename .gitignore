@@ -21,10 +21,5 @@ build
 eclipse
 run
 
-gradle\.properties
-
-gradle/wrapper/
-
-gradlew
-
-gradlew\.bat
+# Files from Forge MDK
+forge*changelog.txt
