@@ -8,6 +8,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -19,7 +20,7 @@ import scala.swing.TextComponent;
 
 import org.lwjgl.input.Keyboard;
 
-@Mod(modid = TorchOptimizer.MODID, name = TorchOptimizer.NAME, version = TorchOptimizer.VERSION, useMetadata = true, clientSideOnly = true, guiFactory = "com.kreezcraft.torchoptimizer.GuiFactory", acceptedMinecraftVersions="[1.12.2]")
+@Mod(modid = TorchOptimizer.MODID, name = TorchOptimizer.NAME, version = TorchOptimizer.VERSION, useMetadata = true, clientSideOnly = true, guiFactory = "com.kreezcraft.torchoptimizer.GuiFactory", acceptedMinecraftVersions = "[1.12.2]")
 public class TorchOptimizer {
 
 	public static final String MODID = "torchoptimizer";
@@ -57,22 +58,21 @@ public class TorchOptimizer {
 		plusOne = new KeyBinding("key.torchoptimizer.plusone", Keyboard.KEY_LBRACKET, "key.categories.torchoptimizer");
 		ClientRegistry.registerKeyBinding(plusOne);
 
-		minusOne = new KeyBinding("key.torchoptimizer.minusone", Keyboard.KEY_RBRACKET, "key.categories.torchoptimizer");
+		minusOne = new KeyBinding("key.torchoptimizer.minusone", Keyboard.KEY_RBRACKET,
+				"key.categories.torchoptimizer");
 		ClientRegistry.registerKeyBinding(minusOne);
 
 		launchPoller();
 	}
 
 	private void launchPoller() {
-		for (int i = 0; i < 3; i++) {
-			if (poller.isAlive())
-				return;
-			try {
-				poller.start();
-			} catch (Exception e) {
-				e.printStackTrace();
-				poller = new OverlayPoller();
-			}
+		if (poller.isAlive())
+			return;
+		try {
+			poller.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+			poller = new OverlayPoller();
 		}
 	}
 
@@ -95,7 +95,11 @@ public class TorchOptimizer {
 			} else if (active && withCtrl && !withShift) {
 				int mode = (config.displayMode.getInt() + 1) % 3;
 				config.displayMode.set(mode);
-				message = new StringBuilder().append(new TextComponentTranslation("message.torchoptimizer.llo").getFormattedText()).append(" ").append(config.displayModeName.get(mode)).append(" ").append(new TextComponentTranslation("message.torchoptimizer.mode").getFormattedText()).toString();
+				message = new StringBuilder()
+						.append(new TextComponentTranslation("message.torchoptimizer.llo").getFormattedText())
+						.append(" ").append(config.displayModeName.get(mode)).append(" ")
+						.append(new TextComponentTranslation("message.torchoptimizer.mode").getFormattedText())
+						.toString();
 				messageRemainingTicks = 40;
 			} else if (!withShift && !withCtrl && !withAlt) {
 				active = !active;
@@ -105,7 +109,7 @@ public class TorchOptimizer {
 
 		if (minusOne.isPressed()) {
 			if (active) {
-				//well that means you want it enabled
+				// well that means you want it enabled
 				config.optimizeEnable.set(true);
 				config.optimizedPlacement.set(config.optimizedPlacement.getInt() - 1);
 				config.update();
@@ -117,7 +121,7 @@ public class TorchOptimizer {
 
 		if (plusOne.isPressed()) {
 			if (active) {
-				//well that means you want it enabled
+				// well that means you want it enabled
 				config.optimizeEnable.set(true);
 				config.optimizedPlacement.set(config.optimizedPlacement.getInt() + 1);
 				config.update();

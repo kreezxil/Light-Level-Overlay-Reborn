@@ -20,3 +20,11 @@ gradlew
 gradlew\.bat
 
 bin/
+
+run/logs/
+
+run/saves/
+
+run/usercache\.json
+
+run/usernamecache\.json
