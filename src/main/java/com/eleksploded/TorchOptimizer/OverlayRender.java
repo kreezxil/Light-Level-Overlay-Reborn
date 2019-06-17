@@ -1,4 +1,4 @@
-package com.kreezcraft.torchoptimizer;
+package com.eleksploded.TorchOptimizer;
 
 import java.util.ArrayList;
 
@@ -11,22 +11,22 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 
-public class OverlayRenderer {
-
+public class OverlayRender {
+	
 	private ResourceLocation texture;
 	private double[] texureMinX, texureMaxX;
 	private double[] texureMinY, texureMaxY;
 	
 	public void switchTexture(int textureInt) {
-		if (!TorchOptimizer.instance.config.optimizeEnable.getBoolean()) {
+		if (!TorchConfig.GENERAL.Optimize.get()) {
 			texture = new ResourceLocation("torchoptimizer", "textures/overlay.png");
 		} else {
-			texture = new ResourceLocation("torchoptimizer", "textures/"+TorchOptimizer.instance.config.optimizedPlacement.getInt()+".png");
+			texture = new ResourceLocation("torchoptimizer", "textures/"+TorchOptimizer.value+".png");
 		}
 		
 	}
 
-	public OverlayRenderer() {
+	public OverlayRender() {
 		switchTexture(2);
 		texureMinX = new double[64];
 		texureMaxX = new double[64];
@@ -39,10 +39,10 @@ public class OverlayRenderer {
 			texureMaxY[i] = (i / 8 + 1) / 8.0;
 		}
 	}
-
+ 
 	public void render(double x, double y, double z, ArrayList<Overlay>[][] overlays) {
 
-		TextureManager tm = Minecraft.getMinecraft().renderEngine;
+		TextureManager tm = Minecraft.getInstance().textureManager;
 		// VertexBuffer
 		tm.bindTexture(texture);
 		BufferBuilder vb = Tessellator.getInstance().getBuffer();
@@ -72,5 +72,4 @@ public class OverlayRenderer {
 		GL11.glPopAttrib();
 
 	}
-
 }
