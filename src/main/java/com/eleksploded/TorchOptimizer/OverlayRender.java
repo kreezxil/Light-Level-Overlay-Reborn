@@ -1,4 +1,4 @@
-package com.kreezcraft.torchoptimizer;
+package com.eleksploded.TorchOptimizer;
 
 import java.util.ArrayList;
 
@@ -11,22 +11,22 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 
-public class OverlayRenderer {
-
+public class OverlayRender {
+	
 	private ResourceLocation texture;
 	private double[] texureMinX, texureMaxX;
 	private double[] texureMinY, texureMaxY;
 	
 	public void switchTexture(int textureInt) {
-		if (!TorchOptimizer.instance.config.optimizeEnable.getBoolean()) {
+		if (!TorchConfig.GENERAL.Optimize.get()) {
 			texture = new ResourceLocation("torchoptimizer", "textures/overlay.png");
 		} else {
-			texture = new ResourceLocation("torchoptimizer", "textures/"+TorchOptimizer.instance.config.optimizedPlacement.getInt()+".png");
+			texture = new ResourceLocation("torchoptimizer", "textures/"+TorchOptimizer.value+".png");
 		}
 		
 	}
 
-	public OverlayRenderer() {
+	public OverlayRender() {
 		switchTexture(2);
 		texureMinX = new double[64];
 		texureMaxX = new double[64];
@@ -39,10 +39,11 @@ public class OverlayRenderer {
 			texureMaxY[i] = (i / 8 + 1) / 8.0;
 		}
 	}
-
+ 
 	public void render(double x, double y, double z, ArrayList<Overlay>[][] overlays) {
 
-		TextureManager tm = Minecraft.getMinecraft().renderEngine;
+		//y=y-(double)1.9;
+		TextureManager tm = Minecraft.getInstance().textureManager;
 		// VertexBuffer
 		tm.bindTexture(texture);
 		BufferBuilder vb = Tessellator.getInstance().getBuffer();
@@ -56,13 +57,13 @@ public class OverlayRenderer {
 		for (int i = 0; i < overlays.length; i++)
 			for (int j = 0; j < overlays[i].length; j++) {
 				for (Overlay u : overlays[i][j]) {
-					vb.pos(u.x, u.y, u.z).tex(texureMinX[u.index], texureMinY[u.index]).color(255, 255, 255, 255)
+					vb.pos(u.x, u.y-1.9D, u.z).tex(texureMinX[u.index], texureMinY[u.index]).color(255, 255, 255, 255)
 							.endVertex();
-					vb.pos(u.x, u.y, u.z + 1).tex(texureMinX[u.index], texureMaxY[u.index]).color(255, 255, 255, 255)
+					vb.pos(u.x, u.y-1.9D, u.z + 1).tex(texureMinX[u.index], texureMaxY[u.index]).color(255, 255, 255, 255)
 							.endVertex();
-					vb.pos(u.x + 1, u.y, u.z + 1).tex(texureMaxX[u.index], texureMaxY[u.index])
+					vb.pos(u.x + 1, u.y-1.9D, u.z + 1).tex(texureMaxX[u.index], texureMaxY[u.index])
 							.color(255, 255, 255, 255).endVertex();
-					vb.pos(u.x + 1, u.y, u.z).tex(texureMaxX[u.index], texureMinY[u.index]).color(255, 255, 255, 255)
+					vb.pos(u.x + 1, u.y-1.9D, u.z).tex(texureMaxX[u.index], texureMinY[u.index]).color(255, 255, 255, 255)
 							.endVertex();
 				}
 			}
@@ -72,5 +73,4 @@ public class OverlayRenderer {
 		GL11.glPopAttrib();
 
 	}
-
 }

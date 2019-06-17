@@ -1,7 +1,6 @@
-package com.kreezcraft.torchoptimizer;
+package com.eleksploded.TorchOptimizer;
 
 public class Overlay {
-	
 	public int x, z;
 	public double y;
 	public int index;
@@ -12,5 +11,4 @@ public class Overlay {
 		this.z = z;
 		this.index = index;
 	}
-	
 }

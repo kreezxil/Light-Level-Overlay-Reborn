@@ -1,9 +1,0 @@
-key.torchoptimizer.hotkey=Lichtlevel anzeigen/ausblenden
-key.categories.torchoptimizer=Torch Optimizer
-key.torchoptimizer.plusone=Fackelmarker PLUS
-key.torchoptimizer.minusone=Fackelmarker MINUS
-
-message.torchoptimizer.llo=Lichtlevel Anzeige
-message.torchoptimizer.blsl=Blöcke & Himmel
-message.torchoptimizer.blo=nur Blöcke
-message.torchoptimizer.mode=Modus

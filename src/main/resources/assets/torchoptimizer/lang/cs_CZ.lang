@@ -1,9 +1,0 @@
-key.torchoptimizer.hotkey=Zapnout / Vypnout
-key.categories.torchoptimizer=Torch Optimizer
-key.torchoptimizer.plusone=přidat jeden k posunu hvězdičky
-key.torchoptimizer.minusone=odečtěte jeden od posunu hvězdičky
-
-message.torchoptimizer.llo=Průhlednost úrovně světla
-message.torchoptimizer.blsl=Blokovat světlo + vikýř
-message.torchoptimizer.blo=Blokovat pouze světlo
-message.torchoptimizer.mode=Režim
