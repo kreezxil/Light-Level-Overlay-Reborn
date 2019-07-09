@@ -8,7 +8,6 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.client.event.InputEvent.KeyInputEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -131,8 +130,13 @@ public class TorchOptimizer
 			ClientPlayerEntity player = Minecraft.getInstance().player;
 			if (player == null)
 				return;
+			
+			if(Minecraft.getInstance().gameSettings.thirdPersonView != 0){
+				return;
+			}
+			
 			double x = player.lastTickPosX + (player.posX - player.lastTickPosX) * event.getPartialTicks();
-			double y = player.lastTickPosY + (player.posY - player.lastTickPosY) * event.getPartialTicks() - 0.35D;
+			double y = player.getEntity().lastTickPosY + (player.getEntity().posY - player.getEntity().lastTickPosY) * event.getPartialTicks() - 0.35D;
 			double z = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * event.getPartialTicks();
 			renderer.render(x, y, z, poller.overlays);
 		}
