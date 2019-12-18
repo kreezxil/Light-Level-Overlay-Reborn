@@ -52,7 +52,7 @@ public class OverlayPoller extends Thread {
 			return;
 
 		ClientWorld world = mc.world;
-		int playerPosY = (int) Math.floor(mc.player.posY);
+		int playerPosY = (int) Math.floor(mc.player.getPosition().getY());
 		int playerChunkX = mc.player.chunkCoordX;
 		int playerChunkZ = mc.player.chunkCoordZ;
 		int skyLightSub = world.getSkylightSubtracted();
@@ -81,7 +81,7 @@ public class OverlayPoller extends Thread {
 							if (curBlock == Blocks.AIR || curBlock == Blocks.BEDROCK || curBlock == Blocks.BARRIER
 									|| preBlockState.isSolid() || preBlockState.getMaterial().isLiquid()
 									|| preBlockState.canProvidePower()
-									|| curBlockState.doesSideBlockRendering(world, curPos, Direction.UP) == false
+									|| !curBlockState.isSideInvisible(curBlockState, Direction.UP)
 									|| AbstractRailBlock.isRail(preBlockState)) {
 								continue;
 							}
@@ -91,7 +91,7 @@ public class OverlayPoller extends Thread {
 								if (offsetY >= 0.15)
 									continue; // Snow layer too high
 							}
-							int blockLight = world.getLightFor(LightType.BLOCK, prePos);
+							int blockLight = world.getLight(prePos);
 							if (blockLight >= 8 && blockLight < 24)
 								blockLight ^= 16;
 							buffer.add(new Overlay(posX, posY + offsetY + 1, posZ, blockLight));

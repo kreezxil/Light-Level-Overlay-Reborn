@@ -135,9 +135,9 @@ public class TorchOptimizer
 				return;
 			}
 			
-			double x = player.lastTickPosX + (player.posX - player.lastTickPosX) * event.getPartialTicks();
-			double y = player.getEntity().lastTickPosY + (player.getEntity().posY - player.getEntity().lastTickPosY) * event.getPartialTicks() - 0.35D;
-			double z = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * event.getPartialTicks();
+			double x = player.lastTickPosX + (player.getPosition().getX() - player.lastTickPosX) * event.getPartialTicks();
+			double y = player.getEntity().lastTickPosY + (player.getEntity().getPosition().getY() - player.getEntity().lastTickPosY) * event.getPartialTicks() - 0.35D;
+			double z = player.lastTickPosZ + (player.getPosition().getZ() - player.lastTickPosZ) * event.getPartialTicks();
 			renderer.render(x, y, z, poller.overlays);
 		}
 	}

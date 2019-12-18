@@ -1,19 +1,31 @@
-modLoader="javafml" #mandatory
-
-loaderVersion="[25,)" #mandatory (24 is current forge version)
-
+modLoader="javafml"
+loaderVersion="[30,)"
+issueTrackerURL="https://github.com/kreezxil/Torch-Optimizer/issues"
 [[mods]] #mandatory
-
 modId="torchoptimizer" #mandatory
-
 version="${file.jarVersion}" #mandatory
-
 displayName="Torch Optimizer" #mandatory
-
-credits="Thanks to 4poc for his original version. Thanks to Oldjunyi for continuing it for a time." #optional
-
-authors="kreezxil, Eleksploded" #optional
-
+credits="Kreezxil for keeping it alive once again!"
+authors="kreezxil" #optional
+displayURL="https://www.curseforge.com/minecraft/mc-mods/torch-optimizer"
 description='''
 Allows you to visualize the intensity of light rendered as numbers on the top of blocks. Optionally display optimal placement of torches.
 '''
+[[dependencies.torchoptimizer]] #optional
+    # the modid of the dependency
+    modId="forge" #mandatory
+    # Does this dependency have to exist - if not, ordering below must be specified
+    mandatory=true #mandatory
+    # The version range of the dependency
+    versionRange="[30,)" #mandatory
+    # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
+    ordering="NONE"
+    # Side this dependency is applied on - BOTH, CLIENT or SERVER
+    side="CLIENT"
+# Here's another dependency
+[[dependencies.torchoptimizer]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.15.1]"
+    ordering="NONE"
+    side="CLIENT"
