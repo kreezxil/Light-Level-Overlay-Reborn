@@ -28,7 +28,7 @@ public class TorchOptimizer
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
-	public static TorchOptimizer instance;
+    public static TorchOptimizer instance;
 	
 	public static int value;
 	
@@ -43,12 +43,14 @@ public class TorchOptimizer
 	
     
     public TorchOptimizer() {
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+		instance = this;
+
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TorchConfig.spec);
 
         MinecraftForge.EVENT_BUS.register(this);
-        instance = this;
+
     }
 
     private void setup(final FMLClientSetupEvent event) {

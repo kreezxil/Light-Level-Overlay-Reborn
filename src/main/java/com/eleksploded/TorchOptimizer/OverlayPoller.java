@@ -82,7 +82,8 @@ public class OverlayPoller extends Thread {
 									|| preBlockState.isSolid() || preBlockState.getMaterial().isLiquid()
 									|| preBlockState.canProvidePower()
 									|| curBlockState.doesSideBlockRendering(world, curPos, Direction.UP) == false
-									|| AbstractRailBlock.isRail(preBlockState)) {
+									|| AbstractRailBlock.isRail(preBlockState)
+									|| chunk.getBiome(curPos).toString().contains("shroom")) {
 								continue;
 							}
 							double offsetY = 0;
