@@ -11,18 +11,21 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeMushroomIsland;
 import net.minecraft.world.chunk.Chunk;
 
 public class OverlayPoller extends Thread {
-	
+
 	public volatile ArrayList<Overlay>[][] overlays;
-	
+
 	public void run() {
 		int radius = 0;
 		while (true) {
 			int chunkRadius = updateChunkRadius();
 			radius = radius % chunkRadius + 1;
-			if (TorchOptimizer.instance.active) updateLightLevel(radius, chunkRadius);
+			if (TorchOptimizer.instance.active)
+				updateLightLevel(radius, chunkRadius);
 			try {
 				sleep(TorchOptimizer.instance.config.pollingInterval.getInt());
 			} catch (Exception e) {
@@ -30,18 +33,19 @@ public class OverlayPoller extends Thread {
 			}
 		}
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	private int updateChunkRadius() {
 		int size = TorchOptimizer.instance.config.chunkRadius.getInt();
 		if (overlays == null || overlays.length != size * 2 + 1) {
 			overlays = new ArrayList[size * 2 + 1][size * 2 + 1];
 			for (int i = 0; i < overlays.length; i++)
-			for (int j = 0; j < overlays[i].length; j++)
-				overlays[i][j] = new ArrayList<Overlay>();
+				for (int j = 0; j < overlays[i].length; j++)
+					overlays[i][j] = new ArrayList<Overlay>();
 		}
 		return size;
 	}
-	
+
 	private void updateLightLevel(int radius, int chunkRadius) {
 		
 		Minecraft mc = Minecraft.getMinecraft();
@@ -82,9 +86,10 @@ public class OverlayPoller extends Thread {
 						preBlockState.getMaterial().isLiquid() ||
 						preBlockState.canProvidePower() ||
 						curBlockState.isSideSolid(world, curPos, EnumFacing.UP) == false ||
-						BlockRailBase.isRailBlock(preBlockState)) {
+						BlockRailBase.isRailBlock(preBlockState) ||
+						chunk.getBiome(curPos, world.getBiomeProvider()).getBiomeName().equalsIgnoreCase("mushroomisland")) {
 						continue;
-					}
+					} 
 					double offsetY = 0;
 					if (preBlock == Blocks.SNOW_LAYER || preBlock == Blocks.CARPET) {
 						offsetY = preBlockState.getBoundingBox(world, prePos).maxY;
@@ -111,5 +116,5 @@ public class OverlayPoller extends Thread {
 		}
 		
 	}
-	
+
 }
