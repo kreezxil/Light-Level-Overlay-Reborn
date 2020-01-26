@@ -15,8 +15,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
-import scala.swing.TextComponent;
-
 import org.lwjgl.input.Keyboard;
 
 @Mod(modid = TorchOptimizer.MODID, name = TorchOptimizer.NAME, version = TorchOptimizer.VERSION, useMetadata = true, clientSideOnly = true, guiFactory = "com.kreezcraft.torchoptimizer.GuiFactory")
@@ -54,10 +52,10 @@ public class TorchOptimizer {
 		hotkey = new KeyBinding("key.torchoptimizer.hotkey", Keyboard.KEY_F7, "key.categories.torchoptimizer");
 		ClientRegistry.registerKeyBinding(hotkey);
 
-		plusOne = new KeyBinding("key.torchoptimizer.plusone", Keyboard.KEY_PERIOD, "key.categories.torchoptimizer");
+		plusOne = new KeyBinding("key.torchoptimizer.plusone", Keyboard.KEY_LBRACKET, "key.categories.torchoptimizer");
 		ClientRegistry.registerKeyBinding(plusOne);
 
-		minusOne = new KeyBinding("key.torchoptimizer.minusone", Keyboard.KEY_COMMA, "key.categories.torchoptimizer");
+		minusOne = new KeyBinding("key.torchoptimizer.minusone", Keyboard.KEY_RBRACKET, "key.categories.torchoptimizer");
 		ClientRegistry.registerKeyBinding(minusOne);
 
 		launchPoller();
