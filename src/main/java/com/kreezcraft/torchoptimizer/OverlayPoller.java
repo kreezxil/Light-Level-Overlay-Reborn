@@ -83,7 +83,9 @@ public class OverlayPoller extends Thread {
 									|| preBlockState.isBlockNormalCube() || preBlockState.getMaterial().isLiquid()
 									|| preBlockState.canProvidePower()
 									|| curBlockState.isSideSolid(world, curPos, EnumFacing.UP) == false
-									|| BlockRailBase.isRailBlock(preBlockState)) {
+									|| BlockRailBase.isRailBlock(preBlockState)
+							|| chunk.getBiome(curPos, world.getBiomeProvider()).getBiomeName().equalsIgnoreCase("mushroomisland") ||
+									chunk.getBiome(curPos, world.getBiomeProvider()).getBiomeName().equalsIgnoreCase("mushroomislandshore")) {
 								continue;
 							}
 							double offsetY = 0;
