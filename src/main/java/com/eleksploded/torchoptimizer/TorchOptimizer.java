@@ -46,7 +46,7 @@ public class TorchOptimizer
 	public double messageRemainingTicks;
 
 	
-    
+	
 	public TorchOptimizer() {
 		instance = this;
 
@@ -81,7 +81,7 @@ public class TorchOptimizer
 
 		launchPoller();
 	}
-    
+	
 	private void launchPoller() {
 		if (poller.isAlive())
 			return;
@@ -103,9 +103,9 @@ public class TorchOptimizer
 		    LOGGER.info("HELLO from Register Block");
 		}
 	}
-    
-    
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+	
+	
+	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void onKeyInputEvent(KeyInputEvent event) {
 
 
