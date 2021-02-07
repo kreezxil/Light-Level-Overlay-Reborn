@@ -49,12 +49,12 @@ public class TorchOptimizer
     
     public TorchOptimizer() {
 		instance = this;
-
+		
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TorchConfig.spec);
 
-        MinecraftForge.EVENT_BUS.register(this);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TorchConfig.spec);
+
+		MinecraftForge.EVENT_BUS.register(this);
 
 		//Make sure the mod being absent on the other network side does not cause the client to display the server as incompatible
 		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(
