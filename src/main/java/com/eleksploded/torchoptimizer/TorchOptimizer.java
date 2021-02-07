@@ -142,10 +142,6 @@ public class TorchOptimizer
 			ClientPlayerEntity player = Minecraft.getInstance().player;
 			if (player == null)
 				return;
-			
-			if(Minecraft.getInstance().gameSettings.getPointOfView() != PointOfView.FIRST_PERSON){
-				return;
-			}
 
 			IRenderTypeBuffer.Impl renderTypeBuffer = Minecraft.getInstance().getRenderTypeBuffers().getBufferSource();
 			MatrixStack matrixStack = event.getMatrixStack();
