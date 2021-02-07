@@ -34,9 +34,9 @@ public class TorchOptimizer
 	private static final Logger LOGGER = LogManager.getLogger();
 
 	public static TorchOptimizer instance;
-	
+
 	public static int value;
-	
+
 	public boolean active;
 	public OverlayRender renderer;
 	public OverlayPoller poller;
@@ -45,8 +45,8 @@ public class TorchOptimizer
 	public String message;
 	public double messageRemainingTicks;
 
-	
-	
+
+
 	public TorchOptimizer() {
 		instance = this;
 
@@ -81,7 +81,7 @@ public class TorchOptimizer
 
 		launchPoller();
 	}
-	
+
 	private void launchPoller() {
 		if (poller.isAlive())
 			return;
@@ -103,8 +103,8 @@ public class TorchOptimizer
 		    LOGGER.info("HELLO from Register Block");
 		}
 	}
-	
-	
+
+
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void onKeyInputEvent(KeyInputEvent event) {
 

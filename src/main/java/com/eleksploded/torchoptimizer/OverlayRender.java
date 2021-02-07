@@ -4,6 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3d;
@@ -16,7 +17,7 @@ public class OverlayRender {
 	private ResourceLocation texture;
 	private double[] texureMinX, texureMaxX;
 	private double[] texureMinY, texureMaxY;
-	
+
 	public void switchTexture(int textureInt) {
 		if (!TorchConfig.GENERAL.Optimize.get()) {
 			texture = new ResourceLocation("torchoptimizer", "textures/overlay.png");
@@ -40,9 +41,10 @@ public class OverlayRender {
 		}
 	}
  
-	public void render(@Nonnull MatrixStack matrixStack, @Nonnull IRenderTypeBuffer renderer, ArrayList<Overlay>[][] overlays) {
+	public void render(@Nonnull MatrixStack matrixStack, @Nonnull IRenderTypeBuffer.Impl buffer, ArrayList<Overlay>[][] overlays) {
 		Vector3d projectedView = Minecraft.getInstance().gameRenderer.getActiveRenderInfo().getProjectedView();
-		IVertexBuilder builder = renderer.getBuffer(OverlayRenderType.overlayRenderer(texture));
+		RenderType renderType = OverlayRenderType.overlayRenderer(texture);
+		IVertexBuilder builder = buffer.getBuffer(renderType);
 		matrixStack.translate(-projectedView.x, -projectedView.y, -projectedView.z);
 		Matrix4f matrix4f = matrixStack.getLast().getMatrix();
 		for (int i = 0; i < overlays.length; i++) {
@@ -55,7 +57,7 @@ public class OverlayRender {
 				}
 			}
 		}
-
+		buffer.finish(renderType);
 		/**
 		//y=y-(double)1.9;
 		TextureManager tm = Minecraft.getInstance().textureManager;
@@ -68,7 +70,6 @@ public class OverlayRender {
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_DST_COLOR, GL11.GL_ZERO);
 		vb.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
-		matrixStack.translate(-x, -y, -z);
 //		vb.setTranslation(-x, -y, -z);
 		for (int i = 0; i < overlays.length; i++)
 			for (int j = 0; j < overlays[i].length; j++) {

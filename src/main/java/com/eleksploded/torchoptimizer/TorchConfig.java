@@ -1,8 +1,8 @@
 package com.eleksploded.torchoptimizer;
 
-import java.util.ArrayList;
-
 import net.minecraftforge.common.ForgeConfigSpec;
+
+import java.util.ArrayList;
 
 public class TorchConfig {
 	private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();

@@ -1,17 +1,18 @@
 package com.eleksploded.torchoptimizer;
 
-import java.util.ArrayList;
-
 import net.minecraft.block.AbstractRailBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.LightType;
 import net.minecraft.world.chunk.Chunk;
+
+import java.util.ArrayList;
 
 public class OverlayPoller extends Thread {
 
@@ -107,41 +108,7 @@ public class OverlayPoller extends Thread {
 	}
 
 	private boolean isCarpet(Block b) {
-		if(b == Blocks.BLACK_CARPET){
-			return true;
-		} else if(b == Blocks.BLUE_CARPET) {
-			return true;
-		} else if(b == Blocks.BROWN_CARPET) {
-			return true;
-		} else if(b == Blocks.CYAN_CARPET) {
-			return true;
-		} else if(b == Blocks.GRAY_CARPET) {
-			return true;
-		} else if(b == Blocks.GREEN_CARPET) {
-			return true;
-		} else if(b == Blocks.LIGHT_BLUE_CARPET) {
-			return true;
-		} else if(b == Blocks.LIGHT_GRAY_CARPET) {
-			return true;
-		} else if(b == Blocks.LIME_CARPET) {
-			return true;
-		} else if(b == Blocks.MAGENTA_CARPET) {
-			return true;
-		} else if(b == Blocks.ORANGE_CARPET) {
-			return true;
-		} else if(b == Blocks.PINK_CARPET) {
-			return true;
-		} else if(b == Blocks.PURPLE_CARPET) {
-			return true;
-		} else if(b == Blocks.RED_CARPET) {
-			return true;
-		} else if(b == Blocks.WHITE_CARPET) {
-			return true;
-		} else if(b == Blocks.YELLOW_CARPET) {
-			return true;
-		} else {
-			return false;
-		}
+		return b.isIn(BlockTags.CARPETS);
 	}
 
 }
