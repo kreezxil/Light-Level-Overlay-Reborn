@@ -1,4 +1,4 @@
-package com.eleksploded.TorchOptimizer;
+package com.eleksploded.torchoptimizer;
 
 public class Overlay {
 	public int x, z;

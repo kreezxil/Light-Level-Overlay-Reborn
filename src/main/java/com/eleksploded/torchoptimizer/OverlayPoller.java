@@ -1,6 +1,4 @@
-package com.eleksploded.TorchOptimizer;
-
-import java.util.ArrayList;
+package com.eleksploded.torchoptimizer;
 
 import net.minecraft.block.AbstractRailBlock;
 import net.minecraft.block.Block;
@@ -8,10 +6,13 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.LightType;
 import net.minecraft.world.chunk.Chunk;
+
+import java.util.ArrayList;
 
 public class OverlayPoller extends Thread {
 
@@ -52,7 +53,7 @@ public class OverlayPoller extends Thread {
 			return;
 
 		ClientWorld world = mc.world;
-		int playerPosY = (int) Math.floor(mc.player.posY);
+		int playerPosY = (int) Math.floor(mc.player.getPosY());
 		int playerChunkX = mc.player.chunkCoordX;
 		int playerChunkZ = mc.player.chunkCoordZ;
 		int skyLightSub = world.getSkylightSubtracted();
@@ -81,9 +82,9 @@ public class OverlayPoller extends Thread {
 							if (curBlock == Blocks.AIR || curBlock == Blocks.BEDROCK || curBlock == Blocks.BARRIER
 									|| preBlockState.isSolid() || preBlockState.getMaterial().isLiquid()
 									|| preBlockState.canProvidePower()
-									|| curBlockState.doesSideBlockRendering(world, curPos, Direction.UP) == false
+									|| curBlockState.isSolidSide(world, curPos, Direction.UP) == false //doesSideBlockRendering
 									|| AbstractRailBlock.isRail(preBlockState)
-									|| chunk.getBiome(curPos).toString().contains("shroom")) {
+									|| world.getBiomeManager().getBiome(curPos).toString().contains("shroom")) { //|| chunk.getBiome(curPos).toString().contains("shroom")
 								continue;
 							}
 							double offsetY = 0;
@@ -107,41 +108,7 @@ public class OverlayPoller extends Thread {
 	}
 
 	private boolean isCarpet(Block b) {
-		if(b == Blocks.BLACK_CARPET){
-			return true;
-		} else if(b == Blocks.BLUE_CARPET) {
-			return true;
-		} else if(b == Blocks.BROWN_CARPET) {
-			return true;
-		} else if(b == Blocks.CYAN_CARPET) {
-			return true;
-		} else if(b == Blocks.GRAY_CARPET) {
-			return true;
-		} else if(b == Blocks.GREEN_CARPET) {
-			return true;
-		} else if(b == Blocks.LIGHT_BLUE_CARPET) {
-			return true;
-		} else if(b == Blocks.LIGHT_GRAY_CARPET) {
-			return true;
-		} else if(b == Blocks.LIME_CARPET) {
-			return true;
-		} else if(b == Blocks.MAGENTA_CARPET) {
-			return true;
-		} else if(b == Blocks.ORANGE_CARPET) {
-			return true;
-		} else if(b == Blocks.PINK_CARPET) {
-			return true;
-		} else if(b == Blocks.PURPLE_CARPET) {
-			return true;
-		} else if(b == Blocks.RED_CARPET) {
-			return true;
-		} else if(b == Blocks.WHITE_CARPET) {
-			return true;
-		} else if(b == Blocks.YELLOW_CARPET) {
-			return true;
-		} else {
-			return false;
-		}
+		return b.isIn(BlockTags.CARPETS);
 	}
 
 }
