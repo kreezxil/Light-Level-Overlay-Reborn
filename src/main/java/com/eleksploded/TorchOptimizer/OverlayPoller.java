@@ -52,7 +52,7 @@ public class OverlayPoller extends Thread {
 			return;
 
 		ClientWorld world = mc.world;
-		int playerPosY = (int) Math.floor(mc.player.posY);
+		int playerPosY = (int) Math.floor(mc.player.getPosY());
 		int playerChunkX = mc.player.chunkCoordX;
 		int playerChunkZ = mc.player.chunkCoordZ;
 		int skyLightSub = world.getSkylightSubtracted();
@@ -81,9 +81,9 @@ public class OverlayPoller extends Thread {
 							if (curBlock == Blocks.AIR || curBlock == Blocks.BEDROCK || curBlock == Blocks.BARRIER
 									|| preBlockState.isSolid() || preBlockState.getMaterial().isLiquid()
 									|| preBlockState.canProvidePower()
-									|| curBlockState.doesSideBlockRendering(world, curPos, Direction.UP) == false
+									|| curBlockState.isSolidSide(world, curPos, Direction.UP) == false //doesSideBlockRendering
 									|| AbstractRailBlock.isRail(preBlockState)
-									|| chunk.getBiome(curPos).toString().contains("shroom")) {
+									|| world.getBiomeManager().getBiome(curPos).toString().contains("shroom")) { //|| chunk.getBiome(curPos).toString().contains("shroom")
 								continue;
 							}
 							double offsetY = 0;

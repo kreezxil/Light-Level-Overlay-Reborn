@@ -1,26 +1,30 @@
 package com.eleksploded.TorchOptimizer;
 
-import net.minecraftforge.eventbus.api.EventPriority;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.lwjgl.glfw.GLFW;
-
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.settings.PointOfView;
 import net.minecraftforge.client.event.InputEvent.KeyInputEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.lwjgl.glfw.GLFW;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("torchoptimizer")
@@ -52,6 +56,11 @@ public class TorchOptimizer
 
         MinecraftForge.EVENT_BUS.register(this);
 
+		//Make sure the mod being absent on the other network side does not cause the client to display the server as incompatible
+		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(
+				() -> "Trans Rights Are Human Rights",
+				(remoteVersionString,networkBool) -> networkBool
+		));
     }
 
     private void setup(final FMLClientSetupEvent event) {
@@ -134,14 +143,15 @@ public class TorchOptimizer
 			if (player == null)
 				return;
 			
-			if(Minecraft.getInstance().gameSettings.thirdPersonView != 0){
+			if(Minecraft.getInstance().gameSettings.getPointOfView() != PointOfView.FIRST_PERSON){
 				return;
 			}
-			
-			double x = player.lastTickPosX + (player.posX - player.lastTickPosX) * event.getPartialTicks();
-			double y = player.getEntity().lastTickPosY + (player.getEntity().posY - player.getEntity().lastTickPosY) * event.getPartialTicks() - 0.35D;
-			double z = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * event.getPartialTicks();
-			renderer.render(x, y, z, poller.overlays);
+
+			IRenderTypeBuffer.Impl renderTypeBuffer = Minecraft.getInstance().getRenderTypeBuffers().getBufferSource();
+			MatrixStack matrixStack = event.getMatrixStack();
+			matrixStack.push();
+			renderer.render(matrixStack, renderTypeBuffer, poller.overlays);
+			matrixStack.pop();
 		}
 	}
 
