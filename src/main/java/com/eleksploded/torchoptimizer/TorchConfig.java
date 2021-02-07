@@ -1,4 +1,4 @@
-package com.eleksploded.TorchOptimizer;
+package com.eleksploded.torchoptimizer;
 
 import java.util.ArrayList;
 

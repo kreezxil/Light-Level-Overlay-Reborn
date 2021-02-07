@@ -1,4 +1,4 @@
-package com.eleksploded.TorchOptimizer;
+package com.eleksploded.torchoptimizer;
 
 import net.minecraft.client.renderer.RenderState;
 import net.minecraft.client.renderer.RenderType;

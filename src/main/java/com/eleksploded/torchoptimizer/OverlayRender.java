@@ -1,4 +1,4 @@
-package com.eleksploded.TorchOptimizer;
+package com.eleksploded.torchoptimizer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
