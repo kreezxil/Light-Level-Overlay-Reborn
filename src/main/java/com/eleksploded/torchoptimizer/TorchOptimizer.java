@@ -30,10 +30,10 @@ import org.lwjgl.glfw.GLFW;
 @Mod("torchoptimizer")
 public class TorchOptimizer
 {
-    // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
+	// Directly reference a log4j logger.
+	private static final Logger LOGGER = LogManager.getLogger();
 
-    public static TorchOptimizer instance;
+	public static TorchOptimizer instance;
 	
 	public static int value;
 	
@@ -47,9 +47,9 @@ public class TorchOptimizer
 
 	
     
-    public TorchOptimizer() {
+	public TorchOptimizer() {
 		instance = this;
-		
+
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TorchConfig.spec);
@@ -61,14 +61,14 @@ public class TorchOptimizer
 				() -> "Trans Rights Are Human Rights",
 				(remoteVersionString,networkBool) -> networkBool
 		));
-    }
+	}
 
-    private void setup(final FMLClientSetupEvent event) {
-    	value = TorchConfig.GENERAL.optimizeValue.get();
-    	active = false;
-    	renderer = new OverlayRender();
+	private void setup(final FMLClientSetupEvent event) {
+		value = TorchConfig.GENERAL.optimizeValue.get();
+		active = false;
+		renderer = new OverlayRender();
 		poller = new OverlayPoller();
-		
+
 		hotkey = new KeyBinding("key.torchoptimizer.hotkey", GLFW.GLFW_KEY_F7, "key.categories.torchoptimizer");
 		ClientRegistry.registerKeyBinding(hotkey);
 
@@ -78,11 +78,11 @@ public class TorchOptimizer
 		minusOne = new KeyBinding("key.torchoptimizer.minusone", GLFW.GLFW_KEY_RIGHT_BRACKET,
 				"key.categories.torchoptimizer");
 		ClientRegistry.registerKeyBinding(minusOne);
-		
+
 		launchPoller();
-    }
+	}
     
-    private void launchPoller() {
+	private void launchPoller() {
 		if (poller.isAlive())
 			return;
 		try {
@@ -93,27 +93,27 @@ public class TorchOptimizer
 		}
 	}
 
-    // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
-    // Event bus for receiving Registry Events)
-    @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents {
-        @SubscribeEvent
-        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            // register a new block here
-            LOGGER.info("HELLO from Register Block");
-        }
-    }
+	// You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
+	// Event bus for receiving Registry Events)
+	@Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
+	public static class RegistryEvents {
+		@SubscribeEvent
+		public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
+		    // register a new block here
+		    LOGGER.info("HELLO from Register Block");
+		}
+	}
     
     
     @SubscribeEvent(priority = EventPriority.LOWEST)
 	public void onKeyInputEvent(KeyInputEvent event) {
 
 
-		if (hotkey.isPressed()) {		
-				active = !active;
-				launchPoller();
-			}
-		
+		if (hotkey.isPressed()) {
+			active = !active;
+			launchPoller();
+		}
+
 
 		if (minusOne.isPressed()) {
 			if (active) {
@@ -136,7 +136,7 @@ public class TorchOptimizer
 		}
 	}
     
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void onRenderWorldLastEvent(RenderWorldLastEvent event) {
 		if (active) {
 			ClientPlayerEntity player = Minecraft.getInstance().player;
